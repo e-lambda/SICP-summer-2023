@@ -1,23 +1,24 @@
 #lang racket
 
-;; Small numbers (less than 0.001) result in guesses that are never good enough.
-;; Large numbers will blow up the squaring inside the test.
+(require "1.6.rkt")
 
-(define (square x) (* x x))
-
-(define (cube x) (* x x x))
+;; 1. Small numbers (less than 0.001) result in guesses that are never good enough.
+;; 2. Large numbers will blow up the squaring inside the test.
 
 (define (improve guess x)
-  (/ (+ (/ x (square guess))
-        (* 2 guess))
-     3))
+  (average guess (/ x guess)))
 
-(define (good-enough? guess x)
-  (< (abs (- (cube guess) x)) 0.001))
+;; Works better as delta scales (so for big numbers). Relative accuracy goes down the other way.
+(define (good-enough? guess last-guess)
+  (define delta (- guess last-guess))
+  (< (abs (/ delta guess)) 0.001))
 
-(define (cbrt-iter guess x)
-  (if (good-enough? guess x)
+(define (sqrt-iter-rec guess last-guess x)
+  (if (good-enough? guess last-guess)
       guess
-      (cbrt-iter (improve guess x) x)))
+      (sqrt-iter-rec (improve guess x) guess x)))
 
-(real->decimal-string (cbrt-iter 1 8))
+(define (sqrt-iter guess x)
+  (sqrt-iter-rec guess x x))
+
+(real->decimal-string (sqrt-iter 1 4))
