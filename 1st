@@ -1,0 +1,31 @@
+> 1A
+> how to imperative knowledge or how to do stuff
+> techniques for controlling the complexity
+> abstract
+> black box abstraction
+> declarative and imperative knowledge
+> make a guess g, improve the guess by averaging g and x/g, keep guessing
+> finding fixed  value of a function F(Y)=Y
+> start a guess for y, keep applying f over and over until result saturates 
+> y -> average(y,x/y) -> fixed point -> sqrt
+B-BA
+=> Primitive objects, method combination, method of abstraction, capturing common patterns
+(*x (+a1 a2 )) (add two vectors and then scale one of em')
+-> conventional interferences
+(YF) = (F (YF)) y operator senses the expression of infinity inside our procedural language
+(operator operands) => combinations,prefix notation
+combination has an anolgy with trees
+(DEFINE (SQUARE X) (* X X)) syntatic sugar of typing lambda
+(DEFINE SQUARE (LAMBDA(X) (* X X))) procedure making
+(define (abs x) 
+	(if (<x 0)
+		(-x)
+		x))
+(define (abs x)
+(cond 	((< x 0) (-x))
+		((= x 0) (0))
+		((> x 0) (x)))   ;two ways
+recursive definition perform infinite computation to achieve it.
+(try X 2)
+(try (average X (/ 2 X) 2)
+it goes on till X ->> 1.4142
