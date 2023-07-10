@@ -1,0 +1,6 @@
+#lang racket
+
+(define (a-plus-abs-b a b)
+  ((if (> b 0) ; if b is {nonegative, negative} ...
+       + -)    ; choose the {+, -} operator and ...
+   a b))       ; apply to (a b)
